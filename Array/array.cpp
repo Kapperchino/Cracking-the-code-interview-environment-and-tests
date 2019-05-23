@@ -81,11 +81,3 @@ char *replaceSpace(char *string, int realSize)
     }
     return string;
 }
-
-static void shiftBuf(char *arr, int size, int pos, int amount)
-{
-    for (int x = pos; x < size - amount; x++)
-    {
-        arr[x + amount] = arr[x];
-    }
-}
