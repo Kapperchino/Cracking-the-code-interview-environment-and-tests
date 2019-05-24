@@ -2,7 +2,6 @@
 #include "array.hpp"
 #include <string>
 
-
 TEST(UniqueStrTest, EasyCases)
 {
     ASSERT_TRUE(isUnique("abcdefg"));
@@ -23,28 +22,45 @@ TEST(UniqueStrTest, SpecialCases)
 
 TEST(strPermutationTest, EasyCases)
 {
-    ASSERT_TRUE(checkPermutation("abcd","cbad"));
-    ASSERT_TRUE(checkPermutation("aaa","aaa"));
-    ASSERT_TRUE(checkPermutation("aaab","baaa"));
-    ASSERT_FALSE(checkPermutation("abcd","abcc"));
-    ASSERT_FALSE(checkPermutation("ababab","ababababab"));
+    ASSERT_TRUE(checkPermutation("abcd", "cbad"));
+    ASSERT_TRUE(checkPermutation("aaa", "aaa"));
+    ASSERT_TRUE(checkPermutation("aaab", "baaa"));
+    ASSERT_FALSE(checkPermutation("abcd", "abcc"));
+    ASSERT_FALSE(checkPermutation("ababab", "ababababab"));
 }
 
 TEST(strPermutationTest, SpecialCases)
 {
-    ASSERT_TRUE(checkPermutation("",""));
-    ASSERT_FALSE(checkPermutation("aaa","bbb"));
+    ASSERT_TRUE(checkPermutation("", ""));
+    ASSERT_FALSE(checkPermutation("aaa", "bbb"));
 }
 //TODO: add more tests
-TEST(UrlifyTest,EasyCases)
+TEST(UrlifyTest, EasyCases)
 {
     char result[1000] = "Mr%20John%20Smith";
     char input[1000] = "Mr John Smith    ";
-    ASSERT_STREQ(result,replaceSpace(input,13));
+    ASSERT_STREQ(result, replaceSpace(input, 13));
+    bzero(result, 1000);
+    bzero(input, 1000);
+}
+//TODO: add more tests(I'm a bit lazy you see...)
+TEST(PalinPermTest, EasyCases)
+{
+    ASSERT_TRUE(palindromPerm("tact coa"));
+    ASSERT_FALSE(palindromPerm("abcbaa"));
 }
 
-int main(int argc, char** argv)
+TEST(OneAwayTest, EasyCases)
 {
-    testing::InitGoogleTest(&argc,argv);
+    ASSERT_TRUE(oneAway("abcd", "abc"));
+    ASSERT_TRUE(oneAway("lmao", "llao"));
+    ASSERT_FALSE(oneAway("lmao", "lmaohaha"));
+    ASSERT_FALSE(oneAway("lmao", "lmao"));
+    ASSERT_FALSE(oneAway("lmao", "lmaohaha"));
+}
+
+int main(int argc, char **argv)
+{
+    testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

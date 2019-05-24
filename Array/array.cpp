@@ -81,3 +81,77 @@ char *replaceSpace(char *string, int realSize)
     }
     return string;
 }
+
+bool palindromPerm(std::string string1)
+{
+    if (string1.empty())
+    {
+        return false;
+    }
+    int Oddsum = 0;
+    int alphabetArr[128] = {0};
+    for (int x = 0; x < string1.length(); x++)
+    {
+        if (string1[x] != ' ')
+        {
+            alphabetArr[string1[x]]++;
+        }
+    }
+
+    for (int x = 0; x < 128; x++)
+    {
+        if (alphabetArr[x] % 2 == 1)
+        {
+            Oddsum++;
+        }
+    }
+    //can only have one odd
+    if (Oddsum > 1)
+    {
+        return false;
+    }
+    return true;
+}
+
+bool oneAway(std::string string1, std::string string2)
+{
+    if (std::abs(string1.length() - string2.length() > 1))
+    {
+        return false;
+    }
+    int length = 0;
+    int diffCount = 0;
+    int index = 0;
+    std::string *str1Ptr = nullptr;
+    std::string *str2Ptr = nullptr;
+    if (string1.length() < string2.length())
+    {
+        length = string2.length();
+        str1Ptr = &string2;
+        str2Ptr = &string1;
+    }
+    else
+    {
+        length = string1.length();
+        str1Ptr = &string1;
+        str2Ptr = &string2;
+    }
+
+    for (int x = 0; x < length; x++)
+    {
+        if ((*str1Ptr)[index] != (*str2Ptr)[x])
+        {
+            ++diffCount;
+            if(string1.length()!=string2.length())
+            {
+                index++;
+            }
+        }
+        ++index;
+    }
+    if(diffCount!=1)
+    {
+        return false;
+    }
+    return true;
+}
