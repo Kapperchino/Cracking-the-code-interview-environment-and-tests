@@ -142,16 +142,39 @@ bool oneAway(std::string string1, std::string string2)
         if ((*str1Ptr)[index] != (*str2Ptr)[x])
         {
             ++diffCount;
-            if(string1.length()!=string2.length())
+            if (string1.length() != string2.length())
             {
                 index++;
             }
         }
         ++index;
     }
-    if(diffCount!=1)
+    if (diffCount != 1)
     {
         return false;
     }
     return true;
+}
+
+std::string stringCompression(std::string input)
+{
+    if (input.empty())
+    {
+        return input;
+    }
+    int charArray[128] = {0};
+    std::string output;
+    for (int x = 0; x < input.length(); x++)
+    {
+        charArray[input[x]]++;
+    }
+    for (int x = 0; x < 128; x++)
+    {
+        if(charArray[x])
+        {
+            output+= char(x);
+            output+= std::to_string(charArray[x]);
+        }
+    }
+    return output;
 }

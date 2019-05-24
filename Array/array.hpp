@@ -6,3 +6,4 @@ bool checkPermutation(std::string string1, std::string string2);
 char* replaceSpace(char* buf,int realSize);
 bool palindromPerm(std::string string1);
 bool oneAway(std::string string1,std::string string2);
+std::string stringCompression(std::string input);

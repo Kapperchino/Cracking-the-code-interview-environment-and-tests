@@ -37,10 +37,8 @@ TEST(strPermutationTest, SpecialCases)
 //TODO: add more tests
 TEST(UrlifyTest, EasyCases)
 {
-    char result[1000] = "Mr%20John%20Smith";
     char input[1000] = "Mr John Smith    ";
-    ASSERT_STREQ(result, replaceSpace(input, 13));
-    bzero(result, 1000);
+    ASSERT_STREQ("Mr%20John%20Smith", replaceSpace(input, 13));
     bzero(input, 1000);
 }
 //TODO: add more tests(I'm a bit lazy you see...)
@@ -57,6 +55,12 @@ TEST(OneAwayTest, EasyCases)
     ASSERT_FALSE(oneAway("lmao", "lmaohaha"));
     ASSERT_FALSE(oneAway("lmao", "lmao"));
     ASSERT_FALSE(oneAway("lmao", "lmaohaha"));
+}
+
+TEST(StrCompressionTest, EasyCases)
+{
+    ASSERT_STREQ("a1b2c3", stringCompression("accbbc").c_str());
+    ASSERT_STREQ("a4b2c3", stringCompression("accbaaabc").c_str());
 }
 
 int main(int argc, char **argv)
