@@ -63,6 +63,18 @@ TEST(StrCompressionTest, EasyCases)
     ASSERT_STREQ("a4b2c3", stringCompression("accbaaabc").c_str());
 }
 
+TEST(rotateMatrixTest, EasyCase)
+{
+    std::vector<std::vector<int>> matrixInput = {{1, 2, 3},
+                                                 {4, 5, 6},
+                                                 {7, 8, 9}};
+    std::vector<std::vector<int>> matrixOutput = {{7, 4, 1},
+                                                  {8, 5, 2},
+                                                  {9, 6, 3}};
+    rotateMatrix(matrixInput);
+    ASSERT_EQ(matrixInput, matrixOutput);
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);

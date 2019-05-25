@@ -170,11 +170,42 @@ std::string stringCompression(std::string input)
     }
     for (int x = 0; x < 128; x++)
     {
-        if(charArray[x])
+        if (charArray[x])
         {
-            output+= char(x);
-            output+= std::to_string(charArray[x]);
+            output += char(x);
+            output += std::to_string(charArray[x]);
         }
     }
     return output;
+}
+
+void rotateMatrix(std::vector<std::vector<int>> &matrix)
+{
+    if (matrix.size() == 0 || matrix[0].size() == 0)
+    {
+        return;
+    }
+
+    int temp = 0;
+    int offset = 0;
+    for (int layer = 0; layer < matrix.size() / 2; layer++)
+    {
+        int last = matrix.size() - 1 - layer;
+        int first = layer;
+        for (int x = first; x < last; x++)
+        {
+            //make sure to do this b/c you need to keep track of which layer you are in
+            offset = x - layer;
+            temp = matrix[layer][x];
+            //top and left
+            matrix[first][x] = matrix[last-offset][first];
+            //left and bottom
+            matrix[last-offset][first] = matrix[last][last-offset];
+            //bottom and right
+            matrix[last][last-offset] = matrix[x][last];
+            //right and top
+            matrix[x][last] = temp;
+
+        }
+    }
 }
