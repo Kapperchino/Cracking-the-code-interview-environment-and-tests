@@ -75,6 +75,25 @@ TEST(rotateMatrixTest, EasyCase)
     ASSERT_EQ(matrixInput, matrixOutput);
 }
 
+TEST(zeroMatrixTest, EasyCase)
+{
+    std::vector<std::vector<int>> matrixInput = {{1, 0, 3},
+                                                 {0, 5, 6},
+                                                 {7, 8, 9}};
+    std::vector<std::vector<int>> matrixOutput = {{0, 0, 0},
+                                                  {0, 0, 0},
+                                                  {0, 0, 9}};
+    zeroMatrix(matrixInput);
+    ASSERT_EQ(matrixInput, matrixOutput);
+}
+
+TEST(stringRotationTest, EasyCase)
+{
+    ASSERT_TRUE(stringRotation("waterbottle", "erbottlewat"));
+    ASSERT_TRUE(stringRotation("lmaohaha", "hahalmao"));
+    ASSERT_FALSE(stringRotation("waterbottle", "serbottlewat"));
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
