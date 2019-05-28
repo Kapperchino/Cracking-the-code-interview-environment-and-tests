@@ -4,8 +4,9 @@
 
 TEST(removeDupsTest, EasyCase)
 {
-    LinkedList<int> list({1, 2, 3, 4, 5});
-    LinkedList<int> list1({1, 2, 3, 4, 5});
+    LinkedList<int> list({1, 2, 2, 3, 5});
+    LinkedList<int> list1({1, 2, 3, 5});
+    removeDups(list.head);
     ASSERT_EQ(list, list1);
 }
 
