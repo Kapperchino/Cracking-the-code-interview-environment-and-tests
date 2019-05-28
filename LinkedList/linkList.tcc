@@ -23,6 +23,7 @@ LinkedList<T>::LinkedList()
 template <class T>
 LinkedList<T>::LinkedList(std::vector<T> input)
 {
+    this->head = nullptr;
     if (input.size() > 0)
     {
         for (int x = 0; x < input.size(); x++)
@@ -41,9 +42,9 @@ void LinkedList<T>::insertBack(T value)
 {
     Node<T> *temp = this->head;
     Node<T> *newNode = new Node<T>(value);
-    if (!temp)
+    if (!this->head)
     {
-        temp = newNode;
+        this->head = newNode;
         return;
     }
 
@@ -57,13 +58,12 @@ void LinkedList<T>::insertBack(T value)
 template <class T>
 LinkedList<T>::~LinkedList()
 {
-    Node<T> *temp = head;
-    Node<T>* oldTemp = nullptr;
-    while (temp)
+    Node<T> *temp;
+    while (this->head)
     {
-        temp = temp->next;
-        delete head;
-        head = temp;
+        temp = this->head;
+        this->head = this->head->next;
+        delete temp;
     }
 }
 
@@ -77,7 +77,10 @@ std::ostream &operator<<(std::ostream &outputStream, const LinkedList<T> &list)
         while (temp)
         {
             output += std::to_string(temp->data);
-            output += ",";
+            if (temp->next)
+            {
+                output += ",";
+            }
             temp = temp->next;
         }
     }
@@ -89,9 +92,9 @@ bool operator==(const LinkedList<T> &a, const LinkedList<T> &b)
 {
     Node<T> *temp = a.head;
     Node<T> *temp1 = b.head;
-    while (temp && temp1)
+    while (temp || temp1)
     {
-        if (temp->data != temp1->data)
+        if ((!temp || !temp1)||temp->data != temp1->data )
         {
             return false;
         }
