@@ -28,5 +28,7 @@ struct LinkedList
 
 void removeDups(Node<int> *head);
 void removeDupsNoBuf(Node<int> *head);
+int returnKToLast(Node<int> *head, int k);
+void deleteMiddleNode(Node<int> *head);
 
 #include "linkList.tcc"
