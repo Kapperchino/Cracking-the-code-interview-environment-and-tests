@@ -30,5 +30,6 @@ void removeDups(Node<int> *head);
 void removeDupsNoBuf(Node<int> *head);
 int returnKToLast(Node<int> *head, int k);
 void deleteMiddleNode(Node<int> *head);
+void listPatition(Node<int>* head, int patrition);
 
 #include "linkList.tcc"

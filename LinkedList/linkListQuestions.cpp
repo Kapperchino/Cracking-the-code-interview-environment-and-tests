@@ -63,7 +63,7 @@ int returnKToLast(Node<int> *head, int k)
 
     while (kIter)
     {
-        if (count > k-1)
+        if (count > k - 1)
         {
             kIter = kIter->next;
             iter = iter->next;
@@ -79,11 +79,11 @@ int returnKToLast(Node<int> *head, int k)
 
 void deleteMiddleNode(Node<int> *head)
 {
-    Node<int>* slow = head;
-    Node<int>* fast = head;
-    Node<int>* prev = nullptr;
-    Node<int>* delTemp = nullptr;
-    while(fast->next)
+    Node<int> *slow = head;
+    Node<int> *fast = head;
+    Node<int> *prev = nullptr;
+    Node<int> *delTemp = nullptr;
+    while (fast->next)
     {
         prev = slow;
         slow = slow->next;
@@ -92,4 +92,52 @@ void deleteMiddleNode(Node<int> *head)
     delTemp = slow;
     prev->next = slow->next;
     delete delTemp;
+}
+
+void listPatition(Node<int> *head, int patrition)
+{
+    //make another list with numbers less than patrition,
+    //then combine them together
+    Node<int> *iter = head;
+    Node<int> *patritionPos = nullptr;
+    Node<int> *smallListPtr = nullptr;
+    Node<int> *smallListIter = nullptr;
+    Node<int> *prev = nullptr;
+    while (iter)
+    {
+        if (iter->data == patrition && !patritionPos)
+        {
+            patritionPos = iter;
+        }
+
+        if (iter->data < patrition)
+        {
+            //removes the node
+            smallListPtr = iter;
+            if (prev)
+            {
+                prev->next = iter->next;
+            }
+            iter = iter->next;
+            smallListPtr->next = nullptr;
+            //first element in small list
+            if (!smallListIter)
+            {
+                head = smallListPtr;
+                smallListIter = smallListPtr;
+            }
+            else
+            {
+                smallListIter->next = smallListPtr;
+                smallListIter = smallListPtr;
+            }
+        }
+        else
+        {
+            prev = iter;
+            iter = iter->next;
+        }
+    }
+    //done with the making of a new list
+    smallListIter->next = patritionPos;
 }
