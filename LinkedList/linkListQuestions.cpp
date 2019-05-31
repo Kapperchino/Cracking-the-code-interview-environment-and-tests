@@ -231,3 +231,72 @@ bool checkPalindrome(Node<int> *head)
     }
     return true;
 }
+
+Node<int> *checkIntersection(Node<int> *head1, Node<int> *head2)
+{
+    Node<int> *temp1 = head1;
+    Node<int> *temp2 = head2;
+    std::unordered_set<Node<int> *> set1;
+
+    while (temp1 || temp2)
+    {
+        if (temp1)
+        {
+            auto item = set1.insert(temp1);
+            if (!item.second)
+            {
+                return temp1;
+            }
+        }
+
+        if (temp2)
+        {
+            auto item = set1.insert(temp2);
+            if (!item.second)
+            {
+                return temp2;
+            }
+        }
+        if (temp1)
+        {
+            temp1 = temp1->next;
+        }
+        else
+        {
+            temp1 = nullptr;
+        }
+
+        if (temp2)
+        {
+            temp2 = temp2->next;
+        }
+        else
+        {
+            temp2 = nullptr;
+        }
+    }
+
+    return nullptr;
+}
+
+bool isCircular(Node<int> *head)
+{
+    if (!head || !head->next)
+    {
+        return false;
+    }
+
+    Node<int> *slow = head;
+    Node<int> *fast = head->next;
+
+    while (fast && fast->next)
+    {
+        if (slow == fast)
+        {
+            return true;
+        }
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return false;
+}

@@ -76,6 +76,16 @@ TEST(checkPalindromeTest, EasyCase)
     ASSERT_TRUE(checkPalindrome(list->head));
 }
 
+TEST(checkIntersection,EasyCase)
+{
+    //TODO make tests, can currently test on leetcode :https://leetcode.com/problems/intersection-of-two-linked-lists/
+}
+
+TEST(checkIntersection,EasyCase)
+{
+    //TODO make tests, can currently test on leetcode :https://leetcode.com/problems/linked-list-cycle/
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
