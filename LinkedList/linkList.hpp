@@ -31,5 +31,7 @@ void removeDupsNoBuf(Node<int> *head);
 int returnKToLast(Node<int> *head, int k);
 void deleteMiddleNode(Node<int> *head);
 void listPatition(Node<int>* head, int patrition);
+int sumList(Node<int>* head1,Node<int>* head2);
+bool checkPalindrome(Node<int>* head1);
 
 #include "linkList.tcc"

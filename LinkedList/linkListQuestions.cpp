@@ -79,6 +79,10 @@ int returnKToLast(Node<int> *head, int k)
 
 void deleteMiddleNode(Node<int> *head)
 {
+    if (!head)
+    {
+        return;
+    }
     Node<int> *slow = head;
     Node<int> *fast = head;
     Node<int> *prev = nullptr;
@@ -140,4 +144,74 @@ void listPatition(Node<int> *head, int patrition)
     }
     //done with the making of a new list
     smallListIter->next = patritionPos;
+}
+
+int sumList(Node<int> *head1, Node<int> *head2)
+{
+    if (!head1 && !head2)
+    {
+        return 0;
+    }
+
+    Node<int> *iter1 = head1;
+    Node<int> *iter2 = head2;
+    int multiplyer = 1;
+    int carryOver = 0;
+    int result = 0;
+    int temp = 0;
+    while (iter1 || iter2)
+    {
+        if (iter1)
+        {
+            temp += iter1->data;
+        }
+        if (iter2)
+        {
+            temp += iter2->data;
+        }
+        //after getting the amount to add
+
+        result = result + (temp % 10 + carryOver) * multiplyer;
+        if (temp >= 10)
+        {
+            carryOver = 1;
+        }
+        else
+        {
+            carryOver = 0;
+        }
+
+        iter1 = iter1->next;
+        iter2 = iter2->next;
+        temp = 0;
+        multiplyer *= 10;
+    }
+    return result;
+}
+
+bool checkPalindrome(Node<int> *head)
+{
+    Node<int> *slow = head;
+    Node<int> *fast = head;
+    Node<int> *prev = nullptr;
+    Node<int> *next = nullptr;
+    Node<int>* cur = nullptr;
+    while (fast->next)
+    {
+        prev = slow;
+        slow = slow->next;
+        fast = slow->next->next;
+    }
+    prev = slow;
+    cur = slow->next;
+    next = cur->next;
+
+    while (next)
+    {
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+    }
+    //TODO:finish this
+    return false;
 }

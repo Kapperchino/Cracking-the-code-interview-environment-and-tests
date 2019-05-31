@@ -59,6 +59,17 @@ TEST(listPatitionTest, EasyCase)
     ASSERT_TRUE(listPatitionValidate(list.head, 5));
 }
 
+TEST(sumListTest, EasyCase)
+{
+    LinkedList<int>* list = new LinkedList<int>({1,2,3});
+    LinkedList<int>* list1 = new LinkedList<int>({1,2,3});
+    ASSERT_EQ(642,sumList(list->head,list1->head));
+    delete list, list1;
+    list = new LinkedList<int>({6,3,4});
+    list1 = new LinkedList<int>({5,6,3});
+    ASSERT_EQ(801,sumList(list->head,list1->head));
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
