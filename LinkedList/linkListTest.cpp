@@ -61,13 +61,19 @@ TEST(listPatitionTest, EasyCase)
 
 TEST(sumListTest, EasyCase)
 {
-    LinkedList<int>* list = new LinkedList<int>({1,2,3});
-    LinkedList<int>* list1 = new LinkedList<int>({1,2,3});
-    ASSERT_EQ(642,sumList(list->head,list1->head));
+    LinkedList<int> *list = new LinkedList<int>({1, 2, 3});
+    LinkedList<int> *list1 = new LinkedList<int>({1, 2, 3});
+    ASSERT_EQ(642, sumList(list->head, list1->head));
     delete list, list1;
-    list = new LinkedList<int>({6,3,4});
-    list1 = new LinkedList<int>({5,6,3});
-    ASSERT_EQ(801,sumList(list->head,list1->head));
+    list = new LinkedList<int>({6, 3, 4});
+    list1 = new LinkedList<int>({5, 6, 3});
+    ASSERT_EQ(801, sumList(list->head, list1->head));
+}
+
+TEST(checkPalindromeTest, EasyCase)
+{
+    LinkedList<int> *list = new LinkedList<int>({1, 2, 3, 4, 3, 2, 1});
+    ASSERT_TRUE(checkPalindrome(list->head));
 }
 
 int main(int argc, char **argv)

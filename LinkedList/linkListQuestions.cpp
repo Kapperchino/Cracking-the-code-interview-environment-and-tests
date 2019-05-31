@@ -195,23 +195,39 @@ bool checkPalindrome(Node<int> *head)
     Node<int> *fast = head;
     Node<int> *prev = nullptr;
     Node<int> *next = nullptr;
-    Node<int>* cur = nullptr;
+    Node<int> *cur = nullptr;
+    //gets the middle Node
     while (fast->next)
     {
         prev = slow;
         slow = slow->next;
         fast = slow->next->next;
     }
-    prev = slow;
-    cur = slow->next;
+    //sepereates the two lists
+    prev->next = nullptr;
+    cur = slow;
     next = cur->next;
-
-    while (next)
+    //reverses the second half of the list
+    while (cur)
     {
         next = cur->next;
         cur->next = prev;
         prev = cur;
+        cur = next;
     }
-    //TODO:finish this
-    return false;
+
+    slow = head;
+    cur = prev;
+
+    //checks both sides
+    while (slow && cur)
+    {
+        if (slow->data != cur->data)
+        {
+            return false;
+        }
+        slow = slow->next;
+        cur = cur->next;
+    }
+    return true;
 }
