@@ -33,6 +33,7 @@ public:
     void push(T item);
     T pop();
     T peek();
+    T getMin();
 };
 
 #include "minStack.tcc"

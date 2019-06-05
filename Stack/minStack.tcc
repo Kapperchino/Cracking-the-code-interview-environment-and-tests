@@ -21,4 +21,36 @@ void minStack<T>::push(T item)
     }
 }
 
+template <class T>
+T minStack<T>::pop()
+{
+    if (index <= -1)
+    {
+        return T();
+    }
 
+    T item = data[index];
+    index--;
+    if (item == minStack->peek())
+    {
+        minStack->pop();
+    }
+}
+
+template <class T>
+T minStack<T>::peek()
+{
+    if (index <= -1)
+    {
+        return T();
+    }
+
+    T item = data[index];
+    return item;
+}
+
+template <class T>
+T minStack<T>::getMin()
+{
+    return minStack->peek();
+}
