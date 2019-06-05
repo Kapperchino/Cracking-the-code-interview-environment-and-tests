@@ -26,10 +26,10 @@ struct minStack
 private:
     T data[1000];
     int index = 0;
-    minStack<T>* minStack;
+    std::stack<T> stackMin;
+
 public:
     minStack();
-    ~minStack();
     void push(T item);
     T pop();
     T peek();
@@ -37,3 +37,20 @@ public:
 };
 
 #include "minStack.tcc"
+
+template <class T>
+struct setStack
+{
+private:
+    std::vector<std::stack<T>> data;
+    int index = 0;
+    int maxStackSize = 0;
+
+public:
+    setStack();
+    setStack(int maxStackSize);
+    void push(T item);
+    T pop();
+    T peek();
+    T popAt(int index);
+};

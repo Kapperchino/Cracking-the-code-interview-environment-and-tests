@@ -1,9 +1,8 @@
 template <class T>
 minStack<T>::minStack()
 {
-    index = -1;
-    min = std::numeric_limits<int>::max();
-    minStack = new minStack<T>();
+    this->index = -1;
+    stackMin.push(std::numeric_limits<T>::max());
 }
 
 template <class T>
@@ -15,9 +14,9 @@ void minStack<T>::push(T item)
     }
     index++;
     data[index] = item;
-    if (item < minStack->peek())
+    if (item < stackMin.top())
     {
-        minStack->push(item);
+        stackMin.push(item);
     }
 }
 
@@ -31,10 +30,11 @@ T minStack<T>::pop()
 
     T item = data[index];
     index--;
-    if (item == minStack->peek())
+    if (item == stackMin.top())
     {
-        minStack->pop();
+        stackMin.pop();
     }
+    return item;
 }
 
 template <class T>
@@ -52,5 +52,5 @@ T minStack<T>::peek()
 template <class T>
 T minStack<T>::getMin()
 {
-    return minStack->peek();
+    return stackMin.top();
 }

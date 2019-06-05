@@ -7,5 +7,5 @@ include_directories(${GTEST_INCLUDE_DIRS})
 set(CMAKE_BUILD_TYPE Debug)
  
 # Link runTests with what we want to test and the GTest and pthread library
-add_executable(runTests stackTest.cpp tripleStack.tcc stack.cpp)
+add_executable(runTests stackTest.cpp tripleStack.tcc minStack.tcc stack.cpp)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
