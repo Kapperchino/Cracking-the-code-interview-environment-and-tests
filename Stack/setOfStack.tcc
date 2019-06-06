@@ -1,7 +1,7 @@
 template <class T>
 setStack<T>::setStack()
 {
-    data.push_back(std::stack<T>());
+    this->data.push_back(std::stack<T>());
     this->index = -1;
     this->maxStackSize = 10;
 }

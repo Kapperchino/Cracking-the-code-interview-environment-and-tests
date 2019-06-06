@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "stack"
+#include <stack>
 #include <string>
 #include "stack.hpp"
 
@@ -68,6 +68,24 @@ TEST(plateTest, EasyCase)
     }
 
     ASSERT_EQ(std::vector<int>({0, 1, 2, 3, 4, 5, 6, 8, 9}), test2);
+}
+
+TEST(sortStackTest, EasyCase)
+{
+    std::vector<int> test1 = {9, 8, -3, 12331, 2, 100, 3, 2, 1, 0};
+    std::vector<int> test2;
+    std::stack<int> testStack;
+    for (int x = 0; x < test1.size(); x++)
+    {
+        testStack.push(test1[x]);
+    }
+    sortStack(testStack);
+    while (!testStack.empty())
+    {
+        test2.push_back(testStack.top());
+        testStack.pop();
+    }
+    ASSERT_EQ(std::vector<int>({-3, 0, 1, 2, 2, 3, 8, 9, 100, 12331}), test2);
 }
 
 int main(int argc, char **argv)

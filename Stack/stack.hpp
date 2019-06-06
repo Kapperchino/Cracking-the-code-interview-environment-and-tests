@@ -1,5 +1,8 @@
 #pragma once
 #include <limits>
+#include <stack>
+#include <vector>
+#include <cmath>
 #define DEFAULT_SIZE 99
 template <class T>
 struct stackTriple
@@ -58,3 +61,5 @@ public:
 };
 
 #include "setOfStack.tcc"
+
+void sortStack(std::stack<int> &stack);
