@@ -45,6 +45,7 @@ private:
     std::vector<std::stack<T>> data;
     int index = 0;
     int maxStackSize = 0;
+    T shiftStack(int index, bool isTop);
 
 public:
     setStack();
@@ -53,4 +54,7 @@ public:
     T pop();
     T peek();
     T popAt(int index);
+    bool isEmpty();
 };
+
+#include "setOfStack.tcc"

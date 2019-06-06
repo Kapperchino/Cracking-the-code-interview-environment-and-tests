@@ -38,6 +38,38 @@ TEST(minStackTest, EasyCase)
     ASSERT_EQ(-30, testMin);
 }
 
+TEST(plateTest, EasyCase)
+{
+    std::vector<int> test1 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    std::vector<int> test2;
+    setStack<int> testStack(3);
+    for (int x = 0; x < test1.size(); x++)
+    {
+        testStack.push(test1[x]);
+    }
+
+    for (int x = 0; x < test1.size(); x++)
+    {
+        test2.push_back(testStack.pop());
+    }
+
+    ASSERT_EQ(std::vector<int>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}), test2);
+
+    for (int x = 0; x < test1.size(); x++)
+    {
+        testStack.push(test1[x]);
+    }
+
+    testStack.popAt(0);
+    test2.erase(test2.begin(), test2.end());
+    while (!testStack.isEmpty())
+    {
+        test2.push_back(testStack.pop());
+    }
+
+    ASSERT_EQ(std::vector<int>({0, 1, 2, 3, 4, 5, 6, 8, 9}), test2);
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);

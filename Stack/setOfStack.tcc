@@ -9,6 +9,7 @@ setStack<T>::setStack()
 template <class T>
 setStack<T>::setStack(int maxStackSize)
 {
+    this->data.push_back(std::stack<T>());
     this->index = -1;
     this->maxStackSize = maxStackSize;
 }
@@ -16,7 +17,7 @@ setStack<T>::setStack(int maxStackSize)
 template <class T>
 void setStack<T>::push(T item)
 {
-    if (index >= data.size() * maxStackSize - 1)
+    if (std::abs(index) >= (data.size() * maxStackSize - 1))
     {
         data.push_back(std::stack<T>());
     }
@@ -27,7 +28,8 @@ void setStack<T>::push(T item)
 template <class T>
 T setStack<T>::pop()
 {
-    item = data[data.size() - 1].pop();
+    T item = data[data.size() - 1].top();
+    data[data.size() - 1].pop();
     if (index > 0 && index % maxStackSize == 0)
     {
         data.pop_back();
@@ -37,34 +39,38 @@ T setStack<T>::pop()
 }
 
 template <class T>
-static T shiftStack(int index, bool isTop)
+T setStack<T>::shiftStack(int index, bool isTop)
 {
-    std::stack curStack = data[index];
+    std::stack<T> &curStack = data[index];
     T removeItem;
     if (isTop)
     {
-        removeItem = curStack.pop();
+        removeItem = curStack.top();
+        curStack.pop();
     }
     else
     {
         std::stack<T> temp;
         T tempItem;
         //gets rid of the last element
-        for (int x = 0; x < stack.size(); x++)
+        while (!curStack.empty())
         {
-            temp.push(curStack.pop());
+            temp.push(curStack.top());
+            curStack.pop();
         }
-        removeItem = temp.pop();
-        for (int x = 0; x < temp.size(); x++)
+        removeItem = temp.top();
+        temp.pop();
+        while (!temp.empty())
         {
-            curStack.push(temp.pop());
+            curStack.push(temp.top());
+            temp.pop();
         }
     }
     if (curStack.empty())
     {
-        data.erase(data.begin(), data.begin() + index);
+        data.erase(data.begin() + index);
     }
-    else if (stackIndex < data.size() - 1)
+    else if (index < data.size() - 1)
     {
         int pElem = shiftStack(index + 1, false);
         curStack.push(pElem);
@@ -75,5 +81,12 @@ static T shiftStack(int index, bool isTop)
 template <class T>
 T setStack<T>::popAt(int index)
 {
+    this->index--;
     return shiftStack(index, true);
+}
+
+template <class T>
+bool setStack<T>::isEmpty()
+{
+    return index < 0;
 }
