@@ -62,4 +62,20 @@ public:
 
 #include "setOfStack.tcc"
 
+template <class T>
+struct queueStack
+{
+private:
+    std::stack<T> data;
+
+public:
+    queueStack();
+    void add(T item);
+    T get();
+    T peek();
+    bool isEmpty();
+};
+
+#include "queueStack.tcc"
+
 void sortStack(std::stack<int> &stack);
