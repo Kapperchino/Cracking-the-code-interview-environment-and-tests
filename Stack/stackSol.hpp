@@ -8,6 +8,9 @@ template <class T>
 struct stackTriple
 {
 private:
+    T *data = nullptr;
+    int indecies[3];
+    int size = 0;
 
 public:
     stackTriple(int size);
@@ -24,6 +27,9 @@ template <class T>
 struct minStack
 {
 private:
+    T data[1000];
+    int index = 0;
+    std::stack<T> stackMin;
 
 public:
     minStack();
@@ -39,6 +45,10 @@ template <class T>
 struct setStack
 {
 private:
+    std::vector<std::stack<T>> data;
+    int index = 0;
+    int maxStackSize = 0;
+    T shiftStack(int index, bool isTop);
 
 public:
     setStack();
@@ -56,6 +66,7 @@ template <class T>
 struct queueStack
 {
 private:
+    std::stack<T> data;
 
 public:
     queueStack();
