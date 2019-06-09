@@ -21,4 +21,5 @@ T queueStack<T>::peek()
 template <class T>
 bool queueStack<T>::isEmpty()
 {
+    return true;
 }

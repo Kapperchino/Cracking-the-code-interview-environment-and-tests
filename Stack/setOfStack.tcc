@@ -26,4 +26,5 @@ T setStack<T>::popAt(int index)
 template <class T>
 bool setStack<T>::isEmpty()
 {
+    return true;
 }
